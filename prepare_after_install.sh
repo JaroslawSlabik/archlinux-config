@@ -23,6 +23,7 @@ pacman -S \
     m4 \
     make \
     cmake \
+    makepkg \
     pacman \
     patch \
     pkgconf \
@@ -36,11 +37,13 @@ pacman -S \
 #Yay and pakiets for yay
 pacman -S \
     perl-error \
-    perl-maitools \
+    perl-mailtools \
     perl-timedate \
     git \
-    go \
-    yay
+    go
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
 
 #Update using yay
 yay -Syu
