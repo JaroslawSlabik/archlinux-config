@@ -34,19 +34,30 @@ pacman -S \
     util-linux \
     which
 
-#Yay and pakiets for yay
+#Pakiets for yay
 pacman -S \
     perl-error \
     perl-mailtools \
     perl-timedate \
     git \
     go
-git clone https://aur.archlinux.org/yay.git
+
+#Create user aurbuilder
+useradd -r -N -M -d /tmp/aurbuilder -s /usr/bin/nologin -p ---- aurbuilder
+mkdir -p /tmp/aurbuilder
+chmod 777 /tmp/aurbuilder
+echo "aurbuilder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/aurbuilder
+echo "root ALL=(aurbuilder) NOPASSWD: ALL" >> /etc/sudoers.d/aurbuilder
+cd /tmp/aurbuilder
+sudo -u aurbuilder git clone https://aur.archlinux.org/yay.git
 cd yay
-makepkg -si
+sudo -u aurbuilder makepkg -si
 
 #Update using yay
-yay -Syu
+sudo -u aurbuilder yay -Syu
+
+#Delete user aurbuilder
+userdel -r aurbuilder
 
 #Tools for terminal
 yay -S \
