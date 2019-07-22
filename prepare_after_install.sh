@@ -202,6 +202,7 @@ clear
 echo 'Install input lib...\n'
 read -rsp $'Press enter to continue...\n'
 sudo -u aurbuilder  yay -S \
+    jre8-openjdk-headless \
     libreoffice-fresh \
     libreoffice-fresh-pl \
     languagetool \
@@ -248,11 +249,12 @@ sudo -u aurbuilder yay -S \
     python3
 
 clear
-echo 'Create user jslabik...\n'
+echo 'Create user jslabik as SUDO...\n'
 read -rsp $'Press enter to continue...\n'
-useradd -d /home/jslabik -m jslabik
+useradd -d /home/jslabik -m jslabik sudo
 passwd jslabik
-usermod -aG sudo jslabik
+usermod -a -G sudo jslabik
+echo "jslabik ALL=(ALL) ALL" > /etc/sudoers.d/jslabik
 
 #Install envirmoment i3
 clear
