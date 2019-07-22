@@ -92,7 +92,6 @@ read -rsp $'Press enter to continue...\n'
 sudo -u aurbuilder yay -S \
     zip \
     unzip \
-    rar \
     unrar \
     p7zip
 
@@ -138,6 +137,7 @@ clear
 echo 'Install file system support...\n'
 read -rsp $'Press enter to continue...\n'
 sudo -u aurbuilder yay -S \
+    phonom-qt5-vlc \
     dosfstools \
     ntfs-3g \
     btrfs-progs \
