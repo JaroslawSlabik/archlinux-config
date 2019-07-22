@@ -1,12 +1,13 @@
 #!/usr/bin/sh
-echo 'Install wget, libnewt.\n'
-pacman -S wget libnewt
+clear
+echo 'Install wget...\n'
 read -rsp $'Press enter to continue...\n'
-#wget archdi.sf.net/archdi
-#sh archdi
+pacman -S wget libnewt
 
 #Base
-echo 'Install autoconf, automake, binutils, bison, fakeroot, file, findutils, flex, gawk, gcc, gettext, grep, groff, gzip, libtool, m4, make, cmake, pacman, patch, pkgconf, sed, sudo, systemd, texinfo, util-linux, which.\n'
+clear
+echo 'Install base packets...\n'
+read -rsp $'Press enter to continue...\n'
 pacman -S \
     autoconf \
     automake \
@@ -35,9 +36,10 @@ pacman -S \
     texinfo \
     util-linux \
     which
-read -rsp $'Press enter to continue...\n'
 
-echo 'Install perl-error, perl-mailtools, perl-timedate, git, go.\n'
+clear
+echo 'Install pakiets for yay...\n'
+read -rsp $'Press enter to continue...\n'
 #Pakiets for yay
 pacman -S \
     perl-error \
@@ -46,32 +48,41 @@ pacman -S \
     git \
     go
 
-echo 'Create user aurbuilder.\n'
 #Create user aurbuilder
+clear
+echo 'Create user aurbuilder...\n'
+read -rsp $'Press enter to continue...\n'
 useradd -r -N -M -d /tmp/aurbuilder -s /usr/bin/nologin -p ---- aurbuilder
 mkdir -p /tmp/aurbuilder
 chmod 777 /tmp/aurbuilder
 echo "aurbuilder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/aurbuilder
 echo "root ALL=(aurbuilder) NOPASSWD: ALL" >> /etc/sudoers.d/aurbuilder
 
-echo 'Install yay.\n'
+clear
+echo 'Install yay...\n'
+read -rsp $'Press enter to continue...\n'
 cd /tmp/aurbuilder
 sudo -u aurbuilder git clone https://aur.archlinux.org/yay.git
 cd yay
 sudo -u aurbuilder makepkg -si
-read -rsp $'Press enter to continue...\n'
-
 
 #Update using yay
-echo 'Update using yay.\n'
-sudo -u aurbuilder yay -Syu
+clear
+echo 'Update using yay...\n'
 read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -Syu
 
 #Delete user aurbuilder
+clear
+echo 'Delete user aurbuilder...\n'
+read -rsp $'Press enter to continue...\n'
 userdel -r aurbuilder
 
 #Tools for terminal
-yay -S \
+clear
+echo 'Install tools for terminal ...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S \
     pacman-contrib \
     base-devel \
     bash-completion \
@@ -81,7 +92,10 @@ yay -S \
     mc
 
 #Tools for zip
-yay -S \
+clear
+echo 'Install tools for zip...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S \
     zip \
     unzip \
     rar \
@@ -89,7 +103,10 @@ yay -S \
     p7zip
 
 #Tools for network
-yay -S \
+clear
+echo 'Install tools for network...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S \
     rsync \
     traceroute \
     bind-tools \
@@ -102,22 +119,31 @@ systemctl enable sshd
 
 
 #Kernel and headers
-yay -S linux linux-headers
+clear
+echo 'Install kernel...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S linux linux-headers
 
 #Extra
-yay -S \
+clear
+echo 'Install extra...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder sudo -u aurbuilder yay -S \
     cronie \
     xdg-user-dirs \
     haveged \
     intel-ucode \
-    screenfetch \
+    neofetch \
     highlight
 systemctl enable cronie
 systemctl enable numlockon
 systemctl enable haveged
 
 #File system support
-yay -S \
+clear
+echo 'Install file system support...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S \
     dosfstools \
     ntfs-3g \
     btrfs-progs \
@@ -129,26 +155,38 @@ yay -S \
     dolphin
 
 #Sound support
-yay -S \
+clear
+echo 'Install sound support...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S \
     alsa-utils \
     alsa-plugins \
     pulseaudio \
     pulseaudio-alsa
 
 #Print support
-yay -S \
+clear
+echo 'Install print support...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S \
     cups \
     ghostscript cups-pdf
 systemctl enable org.cups.cupsd
 
 #XOrg
-yay -S \
+clear
+echo 'Install XOrg...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S \
     xorg-server \
     xorg-xinit \
     xorg-xrandr
 
 #Fonts
-yay -S \
+clear
+echo 'Install fonts...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S \
     font-bh-ttf \
     font-bitstream-speedo \
     gsfonts \
@@ -159,11 +197,17 @@ yay -S \
     xorg-fonts-type1
 
 #Input
-yay -S xf86-input-libinput
+clear
+echo 'Install input lib...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S xf86-input-libinput
 
 
 #Office
-yay -S \
+clear
+echo 'Install input lib...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder  yay -S \
     libreoffice-fresh \
     libreoffice-fresh-pl \
     languagetool \
@@ -172,59 +216,89 @@ yay -S \
     mythes-pl
 
 #Internet
-yay -S \
+clear
+echo 'Install internet...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S \
     thunderbird \
     thunderbird-i18n-pl
     google-chrome
 
 #Multimedia
-yay -S vlc
+clear
+echo 'Install multimedia...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S vlc
 
 #Graphic
-yay -S gimp
+clear
+echo 'Install graphic...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S gimp
 
 #Game
-yay -S \
-    wine \
-    zenity \
-    lutirs
+#clear
+#echo 'Install graphic...\n'
+#read -rsp $'Press enter to continue...\n'
+# sudo -u aurbuilder yay -S \
+#    wine \
+#    zenity \
+#    lutirs
 
 #Python
-yay -S \
+clear
+echo 'Install python...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S \
     python2 \
     python3
 
-
-useradd -G root -d /home/jslabik -m jslabik
+clear
+echo 'Create user jslabik...\n'
+read -rsp $'Press enter to continue...\n'
+useradd -d /home/jslabik -m jslabik
 passwd jslabik
-
+usermod -aG sudo jslabik
 
 #Install envirmoment i3
-yay -S \
-    i3 \
+clear
+echo 'Install envirmoment i3...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S \
+    i3-wm \
     i3status \
-    i3lock-fancy \
+    i3lock-fancy-git \
     dunst \
     compton \
     rofi \
     polybar-full
 
 #Configuration envirmoment i3
+clear
+echo 'Configuration envirmoment i3...\n'
+read -rsp $'Press enter to continue...\n'
 mkdir -p /home/jslabik/.config/i3
 wget -O /home/jslabik/.config/i3/config https://raw.githubusercontent.com/JaroslawSlabik/archlinux-config/master/i3_config/config
 
 
 #Install display screen
-yay -S \
+clear
+echo 'Install display screen SDDM...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S \
     sddm \
     archlinux-themes-sddm
+systemctl enable sddm.service
 
 #Configuration display screen
 wget -O /etc/sddm.config https://raw.githubusercontent.com/JaroslawSlabik/archlinux-config/master/sddm_config/sddm.conf
 
 
 #Install terminal
-yay -S \
+clear
+echo 'Install terminal...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S \
     alacritty \
     termite
 
@@ -232,6 +306,6 @@ yay -S \
 mkdir -p /home/jslabik/.config/alacritty
 wget -O /home/jslabik/.config/alacritty/alacritty.yml https://raw.githubusercontent.com/JaroslawSlabik/archlinux-config/master/alacirtty_config/alacritty.yml
 
-
+systemctl reboot
 #vim
 
