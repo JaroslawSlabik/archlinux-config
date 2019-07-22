@@ -72,12 +72,6 @@ echo 'Update using yay...\n'
 read -rsp $'Press enter to continue...\n'
 sudo -u aurbuilder yay -Syu
 
-#Delete user aurbuilder
-clear
-echo 'Delete user aurbuilder...\n'
-read -rsp $'Press enter to continue...\n'
-userdel -r aurbuilder
-
 #Tools for terminal
 clear
 echo 'Install tools for terminal ...\n'
@@ -306,6 +300,15 @@ sudo -u aurbuilder yay -S \
 mkdir -p /home/jslabik/.config/alacritty
 wget -O /home/jslabik/.config/alacritty/alacritty.yml https://raw.githubusercontent.com/JaroslawSlabik/archlinux-config/master/alacirtty_config/alacritty.yml
 
+#Delete user aurbuilder
+clear
+echo 'Delete user aurbuilder...\n'
+read -rsp $'Press enter to continue...\n'
+userdel -r aurbuilder
+
+clear
+echo 'Reboot...\n'
+read -rsp $'Press enter to continue...\n'
 systemctl reboot
 #vim
 
