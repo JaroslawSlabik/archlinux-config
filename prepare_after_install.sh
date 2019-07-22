@@ -6,7 +6,7 @@ read -rsp $'Press enter to continue...\n'
 #sh archdi
 
 #Base
-echo 'Install autoconf, automake, binutils, bison, fakeroot, file, findutils, flex, gawk, gcc, gettext, grep, groff, gzip, libtool, m4, make, cmake, makepkg, pacman, patch, pkgconf, sed, sudo, systemd, texinfo, util-linux, which.\n'
+echo 'Install autoconf, automake, binutils, bison, fakeroot, file, findutils, flex, gawk, gcc, gettext, grep, groff, gzip, libtool, m4, make, cmake, pacman, patch, pkgconf, sed, sudo, systemd, texinfo, util-linux, which.\n'
 pacman -S \
     autoconf \
     automake \
@@ -26,7 +26,6 @@ pacman -S \
     m4 \
     make \
     cmake \
-    makepkg \
     pacman \
     patch \
     pkgconf \
