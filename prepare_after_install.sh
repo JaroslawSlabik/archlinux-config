@@ -1,9 +1,12 @@
 #!/usr/bin/sh
+echo 'Install wget, libnewt.\n'
 pacman -S wget libnewt
+read -rsp $'Press enter to continue...\n'
 #wget archdi.sf.net/archdi
 #sh archdi
 
 #Base
+echo 'Install autoconf, automake, binutils, bison, fakeroot, file, findutils, flex, gawk, gcc, gettext, grep, groff, gzip, libtool, m4, make, cmake, makepkg, pacman, patch, pkgconf, sed, sudo, systemd, texinfo, util-linux, which.\n'
 pacman -S \
     autoconf \
     automake \
@@ -33,7 +36,9 @@ pacman -S \
     texinfo \
     util-linux \
     which
+read -rsp $'Press enter to continue...\n'
 
+echo 'Install perl-error, perl-mailtools, perl-timedate, git, go.\n'
 #Pakiets for yay
 pacman -S \
     perl-error \
@@ -42,19 +47,26 @@ pacman -S \
     git \
     go
 
+echo 'Create user aurbuilder.\n'
 #Create user aurbuilder
 useradd -r -N -M -d /tmp/aurbuilder -s /usr/bin/nologin -p ---- aurbuilder
 mkdir -p /tmp/aurbuilder
 chmod 777 /tmp/aurbuilder
 echo "aurbuilder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/aurbuilder
 echo "root ALL=(aurbuilder) NOPASSWD: ALL" >> /etc/sudoers.d/aurbuilder
+
+echo 'Install yay.\n'
 cd /tmp/aurbuilder
 sudo -u aurbuilder git clone https://aur.archlinux.org/yay.git
 cd yay
 sudo -u aurbuilder makepkg -si
+read -rsp $'Press enter to continue...\n'
+
 
 #Update using yay
+echo 'Update using yay.\n'
 sudo -u aurbuilder yay -Syu
+read -rsp $'Press enter to continue...\n'
 
 #Delete user aurbuilder
 userdel -r aurbuilder
