@@ -289,12 +289,12 @@ sudo -u aurbuilder yay -S \
 systemctl enable sddm.service
 
 #Configuration display screen
-wget -O /etc/sddm.config https://raw.githubusercontent.com/JaroslawSlabik/archlinux-config/master/sddm_config/sddm.conf
-wget -O /usr/share/sddm/themes/archlinux-themes-sddm-2.0.tar.bz2 https://github.com/Guidobelix/archlinux-themes-sddm/releases/download/v2.0/archlinux-themes-sddm-2.0.tar.bz2
-tar xjf /usr/share/sddm/themes/archlinux-themes-sddm-2.0.tar.bz2 -C /usr/share/sddm/themes
-mv /usr/share/sddm/themes/archlinux-themes-sddm-2.0/archlinux-simplyblack /usr/share/sddm/themes/archlinux-simplyblack
-rm -rf /usr/share/sddm/themes/archlinux-themes-sddm-2.0
-rm -r /usr/share/sddm/themes/archlinux-themes-sddm-2.0.tar.bz2
+wget -O /etc/sddm.conf https://raw.githubusercontent.com/JaroslawSlabik/archlinux-config/master/sddm_config/sddm.conf
+#wget -O /usr/share/sddm/themes/archlinux-themes-sddm-2.0.tar.bz2 https://github.com/Guidobelix/archlinux-themes-sddm/releases/download/v2.0/archlinux-themes-sddm-2.0.tar.bz2
+#tar xjf /usr/share/sddm/themes/archlinux-themes-sddm-2.0.tar.bz2 -C /usr/share/sddm/themes
+#mv /usr/share/sddm/themes/archlinux-themes-sddm-2.0/archlinux-simplyblack /usr/share/sddm/themes/archlinux-simplyblack
+#rm -rf /usr/share/sddm/themes/archlinux-themes-sddm-2.0
+#rm -r /usr/share/sddm/themes/archlinux-themes-sddm-2.0.tar.bz2
 
 
 #Install terminal
