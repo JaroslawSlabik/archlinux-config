@@ -53,10 +53,11 @@ clear
 echo 'Create user aurbuilder...\n'
 read -rsp $'Press enter to continue...\n'
 useradd -r -N -M -d /tmp/aurbuilder -s /usr/bin/nologin -p ---- aurbuilder
-mkdir -p /tmp/aurbuilder
-chmod 777 /tmp/aurbuilder
 echo "aurbuilder ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/aurbuilder
 echo "root ALL=(aurbuilder) NOPASSWD: ALL" >> /etc/sudoers.d/aurbuilder
+sudo -u aurbuilder mkdir -p /tmp/aurbuilder
+chmod 777 /tmp/aurbuilder
+
 
 clear
 echo 'Install yay...\n'
@@ -288,6 +289,11 @@ systemctl enable sddm.service
 
 #Configuration display screen
 wget -O /etc/sddm.config https://raw.githubusercontent.com/JaroslawSlabik/archlinux-config/master/sddm_config/sddm.conf
+wget -O /usr/share/sddm/themes/archlinux-themes-sddm-2.0.tar.bz2 https://github.com/Guidobelix/archlinux-themes-sddm/releases/download/v2.0/archlinux-themes-sddm-2.0.tar.bz2
+tar xjf /usr/share/sddm/themes/archlinux-themes-sddm-2.0.tar.bz2 -C /usr/share/sddm/themes
+mv /usr/share/sddm/themes/archlinux-themes-sddm-2.0/archlinux-simplyblack /usr/share/sddm/themes/archlinux-simplyblack
+rm -rf /usr/share/sddm/themes/archlinux-themes-sddm-2.0
+rm -r /usr/share/sddm/themes/archlinux-themes-sddm-2.0.tar.bz2
 
 
 #Install terminal
@@ -307,6 +313,7 @@ clear
 echo 'Delete user aurbuilder...\n'
 read -rsp $'Press enter to continue...\n'
 userdel -r aurbuilder
+
 
 clear
 echo 'Reboot...\n'
