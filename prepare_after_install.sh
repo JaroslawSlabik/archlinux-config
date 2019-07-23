@@ -200,7 +200,7 @@ sudo -u aurbuilder yay -S xf86-input-libinput
 
 #Office
 clear
-echo 'Install input lib...\n'
+echo 'Install libreoffice...\n'
 read -rsp $'Press enter to continue...\n'
 sudo -u aurbuilder  yay -S \
     jre8-openjdk-headless \
@@ -233,13 +233,13 @@ read -rsp $'Press enter to continue...\n'
 sudo -u aurbuilder yay -S gimp
 
 #Game
-#clear
-#echo 'Install graphic...\n'
-#read -rsp $'Press enter to continue...\n'
-# sudo -u aurbuilder yay -S \
-#    wine \
-#    zenity \
-#    lutirs
+clear
+echo 'Install game...\n'
+read -rsp $'Press enter to continue...\n'
+ sudo -u aurbuilder yay -S \
+    wine \
+    zenity \
+    lutirs
 
 #Python
 clear
@@ -252,17 +252,18 @@ sudo -u aurbuilder yay -S \
 clear
 echo 'Create user jslabik as SUDO...\n'
 read -rsp $'Press enter to continue...\n'
-useradd -d /home/jslabik -m jslabik sudo
+useradd -d /home/jslabik -m jslabik
 passwd jslabik
-usermod -a -G sudo jslabik
 echo "jslabik ALL=(ALL) ALL" > /etc/sudoers.d/jslabik
+sudo -u jslabik mkdir -p /home/jslabik/.config/yay
+sudo -u jslabik mkdir -p /home/jslabik/.cache/yay
 
 #Install envirmoment i3
 clear
 echo 'Install envirmoment i3...\n'
 read -rsp $'Press enter to continue...\n'
 sudo -u aurbuilder yay -S \
-    i3-wm \
+    i3-gaps \
     i3status \
     i3lock-fancy-git \
     dunst \
