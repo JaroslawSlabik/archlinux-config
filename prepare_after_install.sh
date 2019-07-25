@@ -157,7 +157,8 @@ sudo -u aurbuilder yay -S \
     alsa-utils \
     alsa-plugins \
     pulseaudio \
-    pulseaudio-alsa
+    pulseaudio-alsa \
+    volnoti
 
 #Print support
 clear
@@ -217,7 +218,7 @@ echo 'Install internet...\n'
 read -rsp $'Press enter to continue...\n'
 sudo -u aurbuilder yay -S \
     thunderbird \
-    thunderbird-i18n-pl
+    thunderbird-i18n-pl \
     google-chrome
 
 #Multimedia
@@ -277,6 +278,11 @@ echo 'Configuration envirmoment i3...\n'
 read -rsp $'Press enter to continue...\n'
 mkdir -p /home/jslabik/.config/i3
 wget -O /home/jslabik/.config/i3/config https://raw.githubusercontent.com/JaroslawSlabik/archlinux-config/master/i3_config/config
+mkdir -p /home/jslabik/.config/polybar
+wget -O /home/jslabik/.config/polybar/launch.sh https://r
+chmod +x /home/jslabik/.config/polybar/launch.sh
+wget -O /home/jslabik/.config/polybar/config https://r
+
 
 
 #Install display screen
@@ -314,6 +320,9 @@ clear
 echo 'Delete user aurbuilder...\n'
 read -rsp $'Press enter to continue...\n'
 userdel -r aurbuilder
+
+
+chown -R jslabik:jslabik /home/jslabik/.config
 
 
 clear
