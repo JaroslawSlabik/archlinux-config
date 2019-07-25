@@ -165,3 +165,4 @@ exec_always $HOME/.config/polybar/launch.sh
 # Restart audio
 exec_always pulseaudio -k
 exec_always pulseaudio --start
+exec volnoti
