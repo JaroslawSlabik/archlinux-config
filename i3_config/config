@@ -10,18 +10,6 @@ set $first_screen Virtual-1 #DP-1-3
 set $second_screen #HDMI-1-2
 set $third_screen #none
 
-# Set workspace names
-set $w1 1 :  chromium
-set $w2 2 :  terminal
-set $w3 3 :  code
-set $w4 4 :  messaging
-
-# Assign workspaces to screen
-workspace "$w1" output $first_screen
-workspace "$w2" output $first_screen #$second_screen
-workspace "$w3" output $first_screen #$second_screen
-workspace "$w4" output $first_screen
-
 # Set font for window titles.
 font pango:monospace 8
 
@@ -39,16 +27,12 @@ bindsym $mod+d exec rofi -show run
 
 # change focus
 # Left
-bindsym $mod+j focus left
 bindsym $mod+Left focus left
 # Down
-bindsym $mod+k focus down
 bindsym $mod+Down focus down
 # Up
-bindsym $mod+l focus up
 bindsym $mod+Up focus up
 # Right
-bindsym $mod+semicolon focus right
 bindsym $mod+Right focus right
 
 # move focused window
@@ -147,6 +131,9 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+bindsym Mod4+l pkill -kill -u jslabik
+
 
 # Set wallpaper
 exec_always --no-startup-id feh --bg-scale ~/wallpaper.png

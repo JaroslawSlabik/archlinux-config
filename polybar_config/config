@@ -9,7 +9,7 @@ dpi = 192
 
 font-0 = NotoSans-Regular:size=9;0
 
-modules-left = i3
+modules-left = i3 my-ip volume filesystem clock temperature powermenu
 
 [module/i3]
 type = internal/i3
@@ -18,3 +18,94 @@ pin-workspaces = true
 strip-wsnumbers = true
 index-sort = true
 fuzzy-match = true
+
+[module/my-ip]
+type = custom/script
+exec = /home/jslabik/.config/polybar/my-ip.sh
+interval = 100
+format-underline = ${colors.white}
+format =
+
+label = %output%
+
+[module/volume]
+type = internal/volume
+
+format-volume = <ramp-volume> <label-volume>
+label-muted =   muted
+label-muted-foreground = #66
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-3 = 
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted =  %mountpoint%: %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = #66
+
+
+[module/powermenu]
+type = custom/menu
+
+format-padding = 5
+
+label-open = 
+label-close = 
+label-separator = |
+
+menu-0-0 = Terminate WM
+menu-0-0-foreground = #fba922
+menu-0-0-exec = bspc quit -1
+menu-0-1 = Reboot
+menu-0-1-foreground = #fba922
+menu-0-1-exec = menu_open-1
+menu-0-2 = Power off
+menu-0-2-foreground = #fba922
+menu-0-2-exec = menu_open-2
+
+menu-1-0 = Cancel
+menu-1-0-foreground = #fba922
+menu-1-0-exec = menu_open-0
+menu-1-1 = Reboot
+menu-1-1-foreground = #fba922
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = Power off
+menu-2-0-foreground = #fba922
+menu-2-0-exec = sudo poweroff
+menu-2-1 = Cancel
+menu-2-1-foreground = #fba922
+menu-2-1-exec = menu_open-0
+
+[module/clock]
+type = internal/date
+interval = 2
+date = %%{F#999}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
+
+
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 5
+warn-temperature = 65
+
+format = <ramp> <label>
+;format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+;format-warn-underline = ${self.format-underline}
+
+label = %temperature%
+label-warn = HOT! %temperature%
+label-warn-foreground = #f00
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = #66
