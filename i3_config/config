@@ -11,7 +11,7 @@ set $second_screen #HDMI-1-2
 set $third_screen #none
 
 # Set font for window titles.
-font pango:monospace 8
+font pango:FiraMono Nerd Font Mono 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -132,7 +132,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bindsym Mod4+l pkill -kill -u jslabik
+bindsym Mod4+l exec pkill -kill -u jslabik
 
 
 # Set wallpaper

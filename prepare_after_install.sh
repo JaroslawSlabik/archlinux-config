@@ -88,7 +88,6 @@ echo 'Install tools for terminal ...\n'
 read -rsp $'Press enter to continue...\n'
 yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     pacman-contrib \
-    base-devel \
     bash-completion \
     lsof \
     dmidecode \
@@ -111,7 +110,7 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
 clear
 echo 'Install tools for network...\n'
 read -rsp $'Press enter to continue...\n'
-sudo -u aurbuilder yay -S \
+sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     rsync \
     traceroute \
     bind-tools \
@@ -152,7 +151,7 @@ systemctl enable haveged
 clear
 echo 'Install file system support...\n'
 read -rsp $'Press enter to continue...\n'
-sudo -u aurbuilder yay -S \
+yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     dosfstools \
     ntfs-3g \
     btrfs-progs \

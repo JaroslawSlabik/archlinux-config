@@ -13,6 +13,8 @@ fc-cache -vf
 #Configuration envirmoment i3
 mkdir -p /home/$SET_USER/.config/i3
 wget -O /home/$SET_USER/.config/i3/config $MY_REPO_CONFIG/i3_config/config
+
+#Configuration polybar
 mkdir -p /home/$SET_USER/.config/polybar
 wget -O /home/$SET_USER/.config/polybar/launch.sh $MY_REPO_CONFIG/polybar_config/launch.sh
 chmod +x /home/$SET_USER/.config/polybar/launch.sh
@@ -22,11 +24,6 @@ chmod +x /home/$SET_USER/.config/polybar/my_ip.sh
 
 #Configuration display screen
 wget -O /etc/sddm.conf $MY_REPO_CONFIG/sddm_config/sddm.conf
-wget -O /usr/share/sddm/themes/archlinux-themes-sddm-2.0.tar.bz2 https://github.com/Guidobelix/archlinux-themes-sddm/releases/download/v2.0/archlinux-themes-sddm-2.0.tar.bz2
-tar xjf /usr/share/sddm/themes/archlinux-themes-sddm-2.0.tar.bz2 -C /usr/share/sddm/themes
-mv /usr/share/sddm/themes/archlinux-themes-sddm-2.0/archlinux-simplyblack /usr/share/sddm/themes/archlinux-simplyblack
-rm -rf /usr/share/sddm/themes/archlinux-themes-sddm-2.0
-rm -r /usr/share/sddm/themes/archlinux-themes-sddm-2.0.tar.bz2
 
 #Configuration terminal
 mkdir -p /home/$SET_USER/.config/alacritty
