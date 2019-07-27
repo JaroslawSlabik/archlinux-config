@@ -1,8 +1,11 @@
 #!/usr/bin/sh
+
+#Install wget
 clear
 echo 'Install wget...\n'
 read -rsp $'Press enter to continue...\n'
 yes | LC_ALL=en_US.UTF-8 pacman -S wget libnewt
+
 
 #Base
 clear
@@ -37,6 +40,8 @@ yes | LC_ALL=en_US.UTF-8 pacman -S \
     util-linux \
     which
 
+
+#Install pakiets for yay
 clear
 echo 'Install pakiets for yay...\n'
 read -rsp $'Press enter to continue...\n'
@@ -47,6 +52,7 @@ yes | LC_ALL=en_US.UTF-8 pacman -S \
     perl-timedate \
     git \
     go
+
 
 #Create user aurbuilder
 clear
@@ -59,19 +65,22 @@ sudo -u aurbuilder mkdir -p /tmp/aurbuilder
 chmod 777 /tmp/aurbuilder
 
 
+#Install yay
 clear
 echo 'Install yay...\n'
 read -rsp $'Press enter to continue...\n'
 cd /tmp/aurbuilder
 sudo -u aurbuilder git clone https://aur.archlinux.org/yay.git
 cd yay
-sudo -u aurbuilder makepkg -si
+yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 makepkg -si
+
 
 #Update using yay
 clear
 echo 'Update using yay...\n'
 read -rsp $'Press enter to continue...\n'
-sudo -u aurbuilder yay -Syu
+yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -Syu
+
 
 #Tools for terminal
 clear
@@ -86,6 +95,7 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     dialog \
     mc
 
+
 #Tools for zip
 clear
 echo 'Install tools for zip...\n'
@@ -96,11 +106,12 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     unrar \
     p7zip
 
+
 #Tools for network
 clear
 echo 'Install tools for network...\n'
 read -rsp $'Press enter to continue...\n'
-yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
+sudo -u aurbuilder yay -S \
     rsync \
     traceroute \
     bind-tools \
@@ -120,6 +131,7 @@ syes | udo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     linux \
     linux-headers
 
+
 #Extra
 clear
 echo 'Install extra...\n'
@@ -135,12 +147,12 @@ systemctl enable cronie
 systemctl enable numlockon
 systemctl enable haveged
 
+
 #File system support
 clear
 echo 'Install file system support...\n'
 read -rsp $'Press enter to continue...\n'
-yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
-    phonom-qt5-vlc \
+sudo -u aurbuilder yay -S \
     dosfstools \
     ntfs-3g \
     btrfs-progs \
@@ -148,8 +160,16 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     autofs \
     fuse2 \
     fuse3 \
-    fuseiso \
+    fuseiso
+
+
+#File manager
+clear
+echo 'Install file manager...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S \
     dolphin
+
 
 #Sound support
 clear
@@ -159,8 +179,10 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     alsa-utils \
     alsa-plugins \
     pulseaudio \
-    pulseaudio-alsa \
+    pulseaudio-alsa
+sudo -u aurbuilder yay -S \
     volnoti
+
 
 #Print support
 clear
@@ -171,6 +193,7 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     ghostscript cups-pdf
 systemctl enable org.cups.cupsd
 
+
 #XOrg
 clear
 echo 'Install XOrg...\n'
@@ -179,6 +202,7 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     xorg-server \
     xorg-xinit \
     xorg-xrandr
+
 
 #Fonts
 clear
@@ -193,6 +217,7 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     ttf-dejavu \
     ttf-liberation \
     xorg-fonts-type1
+
 
 #Input
 clear
@@ -215,14 +240,23 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     hyphen-pl \
     mythes-pl
 
-#Internet
+
+#Install mail client
 clear
-echo 'Install internet...\n'
+echo 'Install mail client...\n'
 read -rsp $'Press enter to continue...\n'
 yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     thunderbird \
-    thunderbird-i18n-pl \
+    thunderbird-i18n-pl
+
+
+#Install browser
+clear
+echo 'Install browser...\n'
+read -rsp $'Press enter to continue...\n'
+sudo -u aurbuilder yay -S \
     google-chrome
+
 
 #Multimedia
 clear
@@ -231,12 +265,14 @@ read -rsp $'Press enter to continue...\n'
 yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     vlc
 
+
 #Graphic
 clear
 echo 'Install graphic...\n'
 read -rsp $'Press enter to continue...\n'
 yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     gimp
+
 
 ##Game
 #clear
@@ -247,6 +283,7 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
 #    zenity \
 #    lutirs
 
+
 #Python
 clear
 echo 'Install python...\n'
@@ -255,6 +292,8 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     python2 \
     python3
 
+
+#Create user jslabik as SUDO
 clear
 echo 'Create user jslabik as SUDO...\n'
 read -rsp $'Press enter to continue...\n'
@@ -263,6 +302,7 @@ passwd jslabik
 echo "jslabik ALL=(ALL) ALL" > /etc/sudoers.d/jslabik
 sudo -u jslabik mkdir -p /home/jslabik/.config/yay
 sudo -u jslabik mkdir -p /home/jslabik/.cache/yay
+
 
 #Install envirmoment i3
 clear
@@ -277,6 +317,7 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     rofi \
     polybar-full
 
+
 #Install display screen
 clear
 echo 'Install display screen SDDM...\n'
@@ -286,6 +327,7 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     archlinux-themes-sddm
 systemctl enable sddm.service
 
+
 #Install terminal
 clear
 echo 'Install terminal...\n'
@@ -294,12 +336,13 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     alacritty \
     termite
 
+
 #Configure envirmoment
 clear
 echo 'Configure envirmoment...\n'
 read -rsp $'Press enter to continue...\n'
 mkdir -p /tmp/config
-wget -O /tmp/config/configure_all.sh https://raw.
+wget -O /tmp/config/configure_all.sh https://raw.githubusercontent.com/JaroslawSlabik/archlinux-config/master/configure_all.sh
 sh /tmp/config/configure_all.sh jslabik
 
 
@@ -309,6 +352,8 @@ echo 'Delete user aurbuilder...\n'
 read -rsp $'Press enter to continue...\n'
 userdel -r aurbuilder
 
+
+#Reboot
 clear
 echo 'Reboot...\n'
 read -rsp $'Press enter to continue...\n'
