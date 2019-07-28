@@ -110,7 +110,7 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
 clear
 echo 'Install tools for network...\n'
 read -rsp $'Press enter to continue...\n'
-sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
+yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     rsync \
     traceroute \
     bind-tools \
