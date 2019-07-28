@@ -21,10 +21,10 @@ fuzzy-match = true
 
 [module/my-ip]
 type = custom/script
-exec = /home/jslabik/.config/polybar/my-ip.sh
+exec = /home/jslabik/.config/polybar/my_ip.sh
 interval = 100
-format-underline = ${colors.white}
-format =
+;format-underline = ${colors.white}
+;format =
 
 label = %output%
 
