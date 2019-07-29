@@ -126,7 +126,7 @@ systemctl enable sshd
 clear
 echo 'Install kernel...\n'
 read -rsp $'Press enter to continue...\n'
-syes | udo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
+yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     linux \
     linux-headers
 
