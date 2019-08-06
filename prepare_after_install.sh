@@ -335,6 +335,34 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     alacritty \
     termite
 
+#Install vim
+clear
+echo 'Install vim...\n'
+read -rsp $'Press enter to continue...\n'
+
+DIR_CONFIG_PYTHON_2="$(find /usr/lib/python2.7 -name 'config.c' -printf '%h\n')"
+DIR_CONFIG_PYTHON_3="$(find /usr/lib/python3.* -name 'config.c' -printf '%h\n')"
+
+cd ~
+git clone https://github.com/vim/vim.git
+cd vim
+./configure --with-features=huge \
+            --enable-multibyte \
+	        --enable-rubyinterp=yes \
+	        --enable-pythoninterp=yes \
+	        --with-python-config-dir=$DIR_CONFIG_PYTHON_2 \
+	        --enable-python3interp=yes \
+	        --with-python3-config-dir=$DIR_CONFIG_PYTHON_3 \
+	        --enable-perlinterp=yes \
+	        --enable-luainterp=yes \
+            --enable-gui=gtk3 \
+            --enable-cscope \
+	        --prefix=/usr/local
+
+make VIMRUNTIMEDIR=/usr/local/share/vim/vim81
+make install
+cd ~
+rm rf vim
 
 #Configure envirmoment
 clear

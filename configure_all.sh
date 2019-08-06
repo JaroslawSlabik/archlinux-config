@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/sh
 
 SET_USER=$1
 MY_REPO_CONFIG=https://raw.githubusercontent.com/JaroslawSlabik/archlinux-config/master
@@ -29,5 +29,16 @@ wget -O /etc/sddm.conf $MY_REPO_CONFIG/sddm_config/sddm.conf
 mkdir -p /home/$SET_USER/.config/alacritty
 wget -O /home/$SET_USER/.config/alacritty/alacritty.yml $MY_REPO_CONFIG/alacirtty_config/alacritty.yml
 
+#Configuration vim
+git clone https://github.com/JaroslawSlabik/vim-config.git /home/$SET_USER/vim-config
+rm -rf /home/$SET_USER/vim-config/.git
+mv /home/$SET_USER/vim-config/* /home/$SET_USER/.vim
+rm -rf /home/$SET_USER/vim-config
+mkdir -p /home/$SET_USER/.vim/vimfiles/bundle
+git clone https://github.com/VundleVim/Vundle.vim.git /home/$SET_USER/.vim/vimfiles/bundle/Vundle.vim
+vim +PluginInstall +qall
+
+#Finally
 chown -R $SET_USER:$SET_USER /home/$SET_USER/.config
+chown -R $SET_USER:$SET_USER /home/$SET_USER/.vim
 
