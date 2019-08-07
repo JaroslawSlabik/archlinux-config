@@ -313,8 +313,9 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     i3lock-fancy-git \
     dunst \
     compton \
-    rofi \
-    polybar-full
+    rofi
+sudo -u aurbuilder yay -S \
+    polybar
 
 
 #Install display screen
