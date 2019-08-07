@@ -31,10 +31,15 @@ wget -O /home/$SET_USER/.config/alacritty/alacritty.yml $MY_REPO_CONFIG/alacirtt
 
 #Configuration vim
 git clone https://github.com/JaroslawSlabik/vim-config.git /home/$SET_USER/vim-config
-rm -rf /home/$SET_USER/vim-config/.git
-mv /home/$SET_USER/vim-config/* /home/$SET_USER/.vim
-rm -rf /home/$SET_USER/vim-config
+
+mkdir -p /home/$SET_USER/.vim/config
 mkdir -p /home/$SET_USER/.vim/vimfiles/bundle
+
+mv /home/$SET_USER/vim-config/vimrc /home/$SET_USER/.vim
+mv /home/$SET_USER/vim-config/config/* /home/$SET_USER/.vim/config
+mv /home/$SET_USER/vim-config/colors/* /usr/local/share/vim/vim81/colors
+
+rm -rf /home/$SET_USER/vim-config
 git clone https://github.com/VundleVim/Vundle.vim.git /home/$SET_USER/.vim/vimfiles/bundle/Vundle.vim
 vim +PluginInstall +qall
 
