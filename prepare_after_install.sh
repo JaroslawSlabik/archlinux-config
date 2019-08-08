@@ -291,7 +291,10 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     python2 \
     python3 \
     lua \
-    clang
+    clang \
+    llvm
+sudo -u aurbuilder yay -S \
+    ncurses5-compat-libs
 
 
 #Create user jslabik as SUDO

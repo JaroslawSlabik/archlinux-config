@@ -29,6 +29,8 @@ wget -O /etc/sddm.conf $MY_REPO_CONFIG/sddm_config/sddm.conf
 mkdir -p /home/$SET_USER/.config/alacritty
 wget -O /home/$SET_USER/.config/alacritty/alacritty.yml $MY_REPO_CONFIG/alacirtty_config/alacritty.yml
 
+chown -R $SET_USER:$SET_USER /home/$SET_USER/.config
+
 #Configuration vim
 git clone https://github.com/JaroslawSlabik/vim-config.git /home/$SET_USER/vim-config
 
@@ -41,6 +43,9 @@ mv /home/$SET_USER/vim-config/colors/* /usr/local/share/vim/vim81/colors
 
 rm -rf /home/$SET_USER/vim-config
 git clone https://github.com/VundleVim/Vundle.vim.git /home/$SET_USER/.vim/vimfiles/bundle/Vundle.vim
+
+chown -R $SET_USER:$SET_USER /home/$SET_USER/.vim
+
 sudo -u $SET_USER vim +PluginInstall +qall
 
 #Compile color_coded for vim
@@ -48,11 +53,11 @@ cd /home/$SET_USER/.vim/vimfiles/bundle/color_coded
 rm -f CMakeCache.txt
 mkdir build
 cd build
-cmake ..
+cmake -DLLVM_ROOT_DIR=/usr/lib/cmake/llvm ..
 make && make install
 make clean && make clean_clang
 
-#Finally
-chown -R $SET_USER:$SET_USER /home/$SET_USER/.config
+cd ~
+
 chown -R $SET_USER:$SET_USER /home/$SET_USER/.vim
 
