@@ -289,7 +289,9 @@ echo 'Install python...\n'
 read -rsp $'Press enter to continue...\n'
 yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     python2 \
-    python3
+    python3 \
+    lua \
+    clang
 
 
 #Create user jslabik as SUDO

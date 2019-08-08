@@ -41,7 +41,16 @@ mv /home/$SET_USER/vim-config/colors/* /usr/local/share/vim/vim81/colors
 
 rm -rf /home/$SET_USER/vim-config
 git clone https://github.com/VundleVim/Vundle.vim.git /home/$SET_USER/.vim/vimfiles/bundle/Vundle.vim
-vim +PluginInstall +qall
+sudo -u $SET_USER vim +PluginInstall +qall
+
+#Compile color_coded for vim
+cd /home/$SET_USER/.vim/vimfiles/bundle/color_coded
+rm -f CMakeCache.txt
+mkdir build
+cd build
+cmake ..
+make && make install
+make clean && make clean_clang
 
 #Finally
 chown -R $SET_USER:$SET_USER /home/$SET_USER/.config
