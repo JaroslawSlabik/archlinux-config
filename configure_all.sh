@@ -3,7 +3,7 @@
 SET_USER=$1
 MY_REPO_CONFIG=https://raw.githubusercontent.com/JaroslawSlabik/archlinux-config/master
 
-#install font
+#install font FiraMono Nerd Fonts
 mkdir -p /usr/share/fonts/FiraMono
 wget -O /usr/share/fonts/FiraMono/FiraMono.otf https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraMono/Regular/complete/Fira%20Mono%20Regular%20Nerd%20Font%20Complete%20Mono.otf
 chmod 555 /usr/share/fonts/FiraMono
@@ -14,6 +14,7 @@ fc-cache -vf
 mkdir -p /home/$SET_USER/.config/i3
 wget -O /home/$SET_USER/.config/i3/config $MY_REPO_CONFIG/i3_config/config
 
+
 #Configuration polybar
 mkdir -p /home/$SET_USER/.config/polybar
 wget -O /home/$SET_USER/.config/polybar/launch.sh $MY_REPO_CONFIG/polybar_config/launch.sh
@@ -22,14 +23,43 @@ wget -O /home/$SET_USER/.config/polybar/config $MY_REPO_CONFIG/polybar_config/co
 wget -O /home/$SET_USER/.config/polybar/my_ip.sh $MY_REPO_CONFIG/polybar_config/my_ip.sh
 chmod +x /home/$SET_USER/.config/polybar/my_ip.sh
 
+chown -R $SET_USER:$SET_USER /home/$SET_USER/.config
+
+
 #Configuration display screen
 wget -O /etc/sddm.conf $MY_REPO_CONFIG/sddm_config/sddm.conf
 
-#Configuration terminal
-mkdir -p /home/$SET_USER/.config/alacritty
-wget -O /home/$SET_USER/.config/alacritty/alacritty.yml $MY_REPO_CONFIG/alacirtty_config/alacritty.yml
+#Configuration terminal urxvt
+cat <<EndOfFile >> /home/$SET_USER/.Xresources
+URxvt.background:           #000000
+URxvt.foreground:           #D4D4D4
 
-chown -R $SET_USER:$SET_USER /home/$SET_USER/.config
+URxvt.scrollBar:            true
+URxvt.scrollBar_right:      true
+URxvt.scrollTtyOutput:      false
+URxvt.scrollWithBuffer:     true
+URxvt.scrollTtyKeypress:    true
+
+URxvt.font:                 xft:FiraMono\ Nerd\ Font\ Mono:size=10
+URxvt.boldFont:             xft:FiraMono\ Nerd\ Font\ Mono:bold:size=10
+URxvt.italicFont:           xft:FiraMono\ Nerd\ Font\ Mono:italic:size=10
+URxvt.boldItalicFont:       xft:FiraMono\ Nerd\ Font\ Mono:bold:italic:size=10
+
+URxvt.saveLines:            10000
+
+URxvt.iso14755:             false
+URxvt.iso14755_52:          false
+
+URxvt.keysym.S-C-C:         eval:selection_to_clipboard
+URxvt.keysym.S-C-V:         eval:paste_clipboard
+
+EndOfFile
+
+chown -R $SET_USER:$SET_USER /home/$SET_USER/.Xresources
+
+sudo -u $SET_USER xrdb -load /home/$SET_USER/.Xresources
+:call color_coded#moved()
+
 
 #Configuration vim
 git clone https://github.com/JaroslawSlabik/vim-config.git /home/$SET_USER/vim-config

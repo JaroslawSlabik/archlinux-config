@@ -17,7 +17,7 @@ font pango:FiraMono Nerd Font Mono 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -136,7 +136,7 @@ bindsym Mod4+l exec pkill -kill -u jslabik
 
 
 # Set wallpaper
-exec_always --no-startup-id feh --bg-scale ~/wallpaper.png
+exec_always --no-startup-id nitrogen --set-tiled $HOME/wallpaper.jpg
 
 # Set screen(s)
 # One screen
@@ -148,6 +148,10 @@ exec_always xrandr --output $first_screen --primary --auto
 
 # Start polybar
 exec_always $HOME/.config/polybar/launch.sh
+
+#Start udiskie
+exec_always pkill udiskie
+exec_always udiskie &
 
 # Restart audio
 exec_always pulseaudio -k

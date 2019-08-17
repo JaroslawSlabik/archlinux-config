@@ -159,7 +159,8 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     autofs \
     fuse2 \
     fuse3 \
-    fuseiso
+    fuseiso \
+    udiskie
 
 
 #File manager
@@ -318,7 +319,8 @@ yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
     i3lock-fancy-git \
     dunst \
     compton \
-    rofi
+    rofi \
+    nitrogen
 sudo -u aurbuilder yay -S \
     polybar
 
@@ -338,8 +340,7 @@ clear
 echo 'Install terminal...\n'
 read -rsp $'Press enter to continue...\n'
 yes | sudo -u aurbuilder LC_ALL=en_US.UTF-8 yay -S \
-    alacritty \
-    termite
+    rxvt-unicode-256xresources
 
 #Install vim
 clear
